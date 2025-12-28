@@ -1,10 +1,25 @@
-import os
-import google.generativeai as genai
+import requests
+import json 
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
-model = genai.GenerativeModel("gemini-pro-latest")
+OLLAMA_URL="http://localhost:11434/api/generate"
+MODEL="mistral"
 
 def generate_answer(prompt):
-    res = model.generate_content(prompt)
-    return res.text
+    payload = {
+        "model" : MODEL,
+        "prompt" : prompt,
+        "stream" : False,
+        "options" : {
+            "temperature" : 0.2,
+            "num_predict" : 200
+        }
+    }
+
+    try : 
+        response = requests.post(OLLAMA_URL, json=payload, timeout=300)
+        response.raise_for_status()
+
+        data = response.json()
+        return data.get("response","").strip()
+    except Exception as e:
+        return f"[LLM Error] {str(e)}"

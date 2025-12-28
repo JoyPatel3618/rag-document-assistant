@@ -31,10 +31,10 @@ class MainPipeline:
             raise ValueError("Doc not given yet.")
         
         chunks = self.retriever.retrive(question,k)
-        """context = "\n\n".join(chunks)
+        context = "\n\n".join(chunks)
 
         prompt = build_prompt(context,question)
         answer = generate_answer(prompt)
 
-        return answer,chunks"""
-        return "LLM Integration in progress",chunks
+        return answer,chunks
+        # return "LLM Integration in progress",chunks
