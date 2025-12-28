@@ -4,4 +4,3 @@ faiss-cpu
 PyPDF2
 numpy
 google-generativeai
-
