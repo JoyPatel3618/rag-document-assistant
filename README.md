@@ -57,23 +57,23 @@ Mistral (LLM model)
 Streamlit (frontend UI)
 
 📂 Project Structure
-rag_document_assistant/
-├── intake/
-│   ├── loader.py
-│   ├── cleaner.py
-│   └── chunker.py
-├── embeddings/
-│   ├── embedder.py
-│   └── vector_store.py
-├── rag/
-│   ├── retriever.py
-│   ├── prompt.py
-│   ├── llm.py
-│   └── pipeline.py
-├── ui/
-│   └── app.py
-├── requirements.txt
-└── README.md
+rag_document_assistant/  
+├── intake/  
+│   ├── loader.py  
+│   ├── cleaner.py  
+│   └── chunker.py  
+├── embeddings/  
+│   ├── embedder.py  
+│   └── vector_store.py  
+├── rag/  
+│   ├── retriever.py  
+│   ├── prompt.py  
+│   ├── llm.py  
+│   └── pipeline.py  
+├── ui/  
+│   └── app.py  
+├── requirements.txt  
+└── README.md  
 
 ▶️ How to Run Locally
 1️⃣ Install dependencies
