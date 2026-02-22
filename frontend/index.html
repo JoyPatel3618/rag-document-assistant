@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocChat – AI Document Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <button class="sidebar-toggle" onclick="UI.toggleSidebar()" aria-label="Toggle sidebar">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="brand">
+      <div class="brand-icon">
+        <img src="assets/logo.png" alt="logo"/>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">DocChat</span>
+        <span class="brand-tagline">AI Document Assistant</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div class="status-indicator" id="connectionStatus">
+        <span class="status-dot"></span>
+        <span class="status-label">Ready</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Documents</p>
+        <label class="upload-btn" id="uploadBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <span>Upload Document</span>
+          <input type="file" id="fileInput" hidden accept=".pdf,.txt,.doc,.docx" />
+        </label>
+        <div class="doc-status" id="docStatus">
+          <div class="doc-status-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+              <polyline points="13 2 13 9 20 9"/>
+            </svg>
+          </div>
+          <p>No documents yet.</p>
+          <p>Upload one to get started.</p>
+        </div>
+        <div class="doc-list" id="docList"></div>
+      </div>
+      <div class="sidebar-footer">
+        <p class="sidebar-hint">Supported: PDF, TXT, DOCX</p>
+      </div>
+    </aside>
+
+    <main class="chat-section">
+      <div class="chat-container" id="chat">
+        <div class="welcome" id="welcomeScreen">
+          <div class="welcome-badge">AI-Powered</div>
+          <h2 class="welcome-title">What do you want<br>to know?</h2>
+          <p class="welcome-sub">
+            Upload any document and ask anything about it. I'll summarize,
+            explain, extract, and answer — instantly.
+          </p>
+          <div class="suggestions">
+            <button class="suggestion-chip" onclick="UI.sendSuggestion('Summarize the key points')">
+              <span class="chip-icon">✦</span> Summarize key points
+            </button>
+            <button class="suggestion-chip" onclick="UI.sendSuggestion('What are the main findings?')">
+              <span class="chip-icon">✦</span> Main findings
+            </button>
+            <button class="suggestion-chip" onclick="UI.sendSuggestion('Explain the methodology used')">
+              <span class="chip-icon">✦</span> Explain methodology
+            </button>
+            <button class="suggestion-chip" onclick="UI.sendSuggestion('List all action items')">
+              <span class="chip-icon">✦</span> List action items
+            </button>
+            <button class="suggestion-chip" onclick="UI.sendSuggestion('What are the conclusions?')">
+              <span class="chip-icon">✦</span> Conclusions
+            </button>
+            <button class="suggestion-chip" onclick="UI.sendSuggestion('Give me a brief overview')">
+              <span class="chip-icon">✦</span> Brief overview
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="input-area">
+    <div class="input-wrapper">
+      <div class="input-box">
+        <textarea
+          id="questionInput"
+          placeholder="Ask about your document..."
+          rows="1"
+          onkeydown="UI.handleInputKeydown(event)"
+          oninput="UI.autoResize(this)"
+        ></textarea>
+        <button class="send-btn" id="sendBtn" onclick="Chat.send()" aria-label="Send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <p class="input-hint">
+        Press <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line
+        <span class="made-by">
+        - Made by Joy <span class="heart">✨</span>
+        </span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
