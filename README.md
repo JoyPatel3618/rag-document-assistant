@@ -8,7 +8,7 @@ external cloud APIs.
 
 ------------------------------------------------------------------------
 
-# 🖥 User Interface Preview
+# User Interface Preview
 
 ## Dashboard
 
