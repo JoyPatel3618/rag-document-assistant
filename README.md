@@ -1,115 +1,171 @@
-📄 RAG Document Assistant
+# DocChat: AI-Powered RAG Document Assistant
 
-A Retrieval-Augmented Generation (RAG) system that allows users to upload documents and ask questions, with answers generated strictly from the document content using semantic search and a local Large Language Model (LLM).
+DocChat is a sophisticated Retrieval-Augmented Generation (RAG) system
+designed to provide intelligent querying capabilities over uploaded
+documents. By utilizing local Large Language Models (LLMs) via Ollama,
+it ensures data privacy and high performance without reliance on
+external cloud APIs.
 
-This project demonstrates a complete, modular RAG pipeline — from document ingestion and vector-based retrieval to grounded answer generation — with a simple and interactive Streamlit frontend.
+------------------------------------------------------------------------
 
-✨ Features
+## Technical Stack
 
-📄 PDF document ingestion
+-   **Backend:** FastAPI (Asynchronous Python Framework)
+-   **LLM Engine:** Local Mistral/Llama 3 via Ollama
+-   **Search:** Vector-based Semantic Retrieval
+-   **Frontend:** Custom HTML5/CSS3/JavaScript
+-   **Pipeline:** Modular Document Ingestion and Chunking
 
-🧹 Text cleaning and normalization
+------------------------------------------------------------------------
 
-✂️ Overlapping text chunking
+## System Architecture
 
-🔢 Semantic embeddings using Sentence Transformers
+The system follows a standard RAG pattern, decoupling document
+processing from real-time inference to ensure scalability and accuracy.
 
-⚡ FAISS-based vector similarity search
+### Processing Flow:
 
-🔍 Context-aware retrieval (R in RAG)
+1.  **Ingestion:** Documents are uploaded, cleaned, and partitioned into
+    semantic chunks.
+2.  **Indexing:** Chunks are transformed into high-dimensional
+    embeddings and stored in a vector repository.
+3.  **Retrieval:** User queries trigger a similarity search to identify
+    the most relevant context.
+4.  **Generation:** The retrieved context is injected into a system
+    prompt for the local LLM to generate a grounded response.
 
-🤖 Local LLM-based answer generation using Ollama
+------------------------------------------------------------------------
 
-🖥️ Streamlit-based interactive UI
+## System Requirements
 
-🧱 Clean, modular, extensible codebase
+-   **Operating System:** Windows 10/11, macOS, or Linux
+-   **Memory:** Minimum 8GB RAM (16GB recommended for optimal LLM
+    performance)
+-   **Storage:** 5GB+ available space
+-   **Connectivity:** Required only for initial dependency and model
+    downloads
 
-🧠 How It Works (High-Level)
+------------------------------------------------------------------------
 
-User uploads a PDF document
+# Installation and Setup
 
-Text is extracted, cleaned, and split into overlapping chunks
+## 1. Prerequisites
 
-Each chunk is converted into a dense embedding vector
+Ensure the following are installed and verified on your system:
 
-Embeddings are indexed using FAISS for fast similarity search
+### Python 3.10+
 
-User query is embedded and matched against document chunks
+    python --version
 
-Relevant chunks are injected into a controlled prompt
+### Git
 
-A local LLM (Mistral via Ollama) generates a grounded answer
+    git --version
 
-This ensures accurate, document-based answers with minimal hallucination.
+### Ollama
 
-🧱 Tech Stack
+    ollama --version
 
-Python
+------------------------------------------------------------------------
 
-Sentence-Transformers (semantic embeddings)
+## 2. Repository Initialization
 
-FAISS (vector similarity search)
+    git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+    cd YOUR_REPO_NAME
 
-Ollama (local LLM inference)
+------------------------------------------------------------------------
 
-Mistral (LLM model)
+## 3. Environment Configuration
 
-Streamlit (frontend UI)
+It is recommended to use a virtual environment:
 
-📂 Project Structure
-rag_document_assistant/  
-├── intake/  
-│   ├── loader.py  
-│   ├── cleaner.py  
-│   └── chunker.py  
-├── embeddings/  
-│   ├── embedder.py  
-│   └── vector_store.py  
-├── rag/  
-│   ├── retriever.py  
-│   ├── prompt.py  
-│   ├── llm.py  
-│   └── pipeline.py  
-├── ui/  
-│   └── app.py  
-├── requirements.txt  
-└── README.md  
+    python -m venv venv
 
-▶️ How to Run Locally
-1️⃣ Install dependencies
-pip install -r requirements.txt
+### Windows
 
-2️⃣ Ensure Ollama is running
-ollama serve
+    venv\Scripts\activate
 
+### macOS/Linux
 
-Make sure the required model is available:
+    source venv/bin/activate
 
-ollama pull mistral
+Install dependencies:
 
-3️⃣ Run the application
-streamlit run ui/app.py
+    pip install -r requirements.txt
 
-📝 Notes
+------------------------------------------------------------------------
 
-The LLM runs fully locally using Ollama — no external APIs or internet required
+## 4. Model Deployment
 
-The system is designed for learning, experimentation, and academic demonstration
+Start Ollama:
 
-The modular architecture allows easy extension (multi-doc support, citations, speech input, etc.)
+    ollama serve
 
-🚀 Future Enhancements (Optional)
+In a separate terminal:
 
-Source citations for answers
+    ollama pull mistral
 
-Multi-document support
+------------------------------------------------------------------------
 
-Speech-to-text query input
+# Execution Guide
 
-Persistent FAISS index
+## Backend Service
 
-REST API backend
+Launch FastAPI:
 
-📌 Author
+    uvicorn main:app --reload
 
-Built as a learning-focused project to understand Retrieval-Augmented Generation systems end-to-end, including vector search, prompt grounding, and local LLM integration.
+Access API docs:
+
+    http://localhost:8000/docs
+
+------------------------------------------------------------------------
+
+## Frontend Access
+
+Navigate to:
+
+    frontend/index.html
+
+Open it in your browser or use VS Code Live Server.
+
+------------------------------------------------------------------------
+
+# Project Structure
+
+    RAG_Model/
+    ├── main.py              # FastAPI Application Entry
+    ├── requirements.txt     # Dependency Manifest
+    ├── intake/              # Document Processing (Load, Clean, Chunk)
+    ├── embeddings/          # Vectorization Logic
+    ├── rag/                 # Retrieval & Prompt Engineering
+    └── frontend/            # UI Implementation (HTML, CSS, JS)
+
+------------------------------------------------------------------------
+
+# Troubleshooting
+
+### Connection Refused
+
+Ensure both Uvicorn and Ollama are running.
+
+### Model Timeout
+
+Verify system RAM meets model requirements.
+
+### Missing Module
+
+    pip install python-multipart
+
+------------------------------------------------------------------------
+
+# Security and Privacy
+
+-   **Local Inference:** All data remains on the local machine.
+-   **Network:** Do not expose port 8000 publicly without
+    authentication.
+
+------------------------------------------------------------------------
+
+## Lead Developer
+
+Joy ❤️
