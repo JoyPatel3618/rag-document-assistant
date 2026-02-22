@@ -1,22 +1,14 @@
-/* ============================================================
-   DocChat – app.js
-   Clean module pattern: Config, API, UI, Chat
-   ============================================================ */
-
-/* ── Configuration ── */
 const Config = {
   BACKEND_URL: "http://localhost:8000",
   MAX_FILE_MB: 20,
 };
 
-/* ── State ── */
 const State = {
   hasDocument: false,
   isLoading: false,
   documents: [],
 };
 
-/* ── API Layer ── */
 const API = {
   async upload(file) {
     const formData = new FormData();
@@ -43,7 +35,6 @@ const API = {
   },
 };
 
-/* ── UI Utilities ── */
 const UI = {
   elements: {
     chat:          () => document.getElementById("chat"),
@@ -186,7 +177,6 @@ const UI = {
     chat.scrollTop = chat.scrollHeight;
   },
 
-  /* Basic text formatting: newlines → <br>, **bold** → <strong> */
   formatText(text) {
     return text
       .replace(/&/g, "&amp;")
@@ -197,7 +187,6 @@ const UI = {
   },
 };
 
-/* ── Document Upload ── */
 const Uploader = {
   init() {
     const fileInput = document.getElementById("fileInput");
@@ -230,12 +219,10 @@ const Uploader = {
       UI.showToast(err.message || "Upload failed. Please try again.", "error");
     }
 
-    /* Reset input so same file can be re-uploaded */
     document.getElementById("fileInput").value = "";
   },
 };
 
-/* ── Chat ── */
 const Chat = {
   addMessage(text, type) {
     UI.hideWelcome();
@@ -288,7 +275,6 @@ const Chat = {
   },
 };
 
-/* ── Bootstrap ── */
 document.addEventListener("DOMContentLoaded", () => {
   Uploader.init();
 });
