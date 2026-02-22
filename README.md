@@ -8,6 +8,18 @@ external cloud APIs.
 
 ------------------------------------------------------------------------
 
+# 🖥 User Interface Preview
+
+## Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+## RAG Chat Response
+
+![Chat Example](screenshots/example.png)
+
+-----------------------------------------------------------------------
+
 ## Technical Stack
 
 -   **Backend:** FastAPI (Asynchronous Python Framework)
